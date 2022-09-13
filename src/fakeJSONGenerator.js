@@ -1,5 +1,4 @@
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
-// import { faker } from '@faker-js/faker';
 
 faker.setLocale('de');
  const USERS = [];
@@ -108,27 +107,20 @@ let generatedFakeData = [];
 export function generateData(amount, fakeDataType) {
   count = 0;
 
-  console.log("type:", fakeDataType)
-  console.log("amount:", amount)  
-
   switch(fakeDataType) {
     case "person":
-      console.log("PERSON WAS CHOESEN!")
       generatedFakeData = generateFakeDataAmountHelper(amount, createRandomPerson)
       console.log("DATA CREATED:", generatedFakeData);
       break;
     case "company":
-      console.log("company WAS CHOESEN!")
       generatedFakeData = generateFakeDataAmountHelper(amount, createRandomCompany )
 
       break;
     case "product":
-      console.log("product WAS CHOESEN!")
       generatedFakeData = generateFakeDataAmountHelper(amount, createRandomProduct)
 
       break;
     case "payment":
-      console.log("payment WAS CHOESEN!")
       generatedFakeData = generateFakeDataAmountHelper(amount, createRandomPayment)
 
       break;
