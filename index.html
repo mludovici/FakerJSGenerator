@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="./src/assets/css/bootstrap.min.css">
+
+
+		<title>FakeJSONGenerator</title>		
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<script>
+		const fakeQuotes =["You can never be wrong, until you are right!", 
+		"An IT company that has not yet chased Godzilla through the corridors is not yet an IT company!" ]
+		function getQuote() {
+			return fakeQuotes[Math.floor(Math.random(fakeQuotes.length))]
+		}
+	</script>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="./src//assets/fke.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+					JSON Fake Data Generator
+				</a>
+			</div>
+		</nav>
+
+<div class="container cold-md-6 col-xl-4 col-lg-8 col-xs-12">
+			<div class=" container py-1">
+				<div class="row d-flex justify-content-end align-items-end">
+					<div class="">
+		
+						<div class="card text-white" style="background-color: #1f959b; border-radius: 15px;">
+							<div class="card-body p-2">
+		
+								<i class="fas fa-quote-left fa-2x mb-4"></i>
+		
+								<p class="lead">An IT company that has not yet chased Godzilla through the corridors is not an IT company!</p>
+		
+								<hr>
+		
+								<div class="d-flex justify-content-between">
+									<p class="mb-0">old saying</p>
+									<h6 class="mb-0"><span class="badge rounded-pill"
+											style="background-color: rgba(0,0,0, 0.2);">1876</span> <svg xmlns="http://www.w3.org/2000/svg" color="red" width="16" height="16" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+												<path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/>
+											</svg></i>
+									</h6>
+								</div>
+		
+							</div>
+						</div>
+		
+					</div>
+				</div>
+			</div>
+
+		<section id="fakeGenerator" class="container mt-5 ">
+			<div id="selectBox" class="form-group flex justify-between ">
+				<div class="form-floating mb-3">
+					<select id="fakeData"  class="form-select" aria-label="Select fake Type">
+						<option value="person">Person</option>
+						<option value="company">Company</option>
+						<option value="product">Product</option>
+						<option value="payment">Payment</option>
+					</select>					
+					<label for="fakeData">Select fake type</label>
+				</div>
+				<div class="form-floating mb-3">
+					<select id="numberGenerated" class="form-select" aria-label="Select number of datasets">
+					<option value="10">10</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+					<option value="300">300</option>
+					<option value="500">500</option>
+					</select>
+					<label for="numberGenerated">Select amount</label>
+				</div>
+			</div>
+
+			<div class="float-end clearfix mb-5">
+				<button type="button" class="btn btn-primary" id="genBtn">Generate</button>
+				<button type="button" class="btn btn-secondary" id="copy">Copy</button>
+				<button type="button" class="btn btn-success" id="download">Download</button>
+				<a id="downloadAnchorElem" style="display:none"></a>
+			</div>
+		</section>
+			<pre class="mt-5 min-vw-100" id="dataOut"></pre>
+		</div>
+			<script type="text/javascript" src="./src/assets/js/bootstrap.bundle.min.js"></script>
+		<script type="module" src="./src/index.js"></script>
+	</body>
+
+</html>

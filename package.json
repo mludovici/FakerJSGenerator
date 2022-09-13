@@ -1,0 +1,19 @@
+{
+  "name": "fakerjsgenerator",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./index.html",
+  "scripts": {
+    "start:dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Marc Ludovici (https://mludovici.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^7.5.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.1"
+  }
+}
