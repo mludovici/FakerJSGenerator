@@ -43,6 +43,7 @@ const sectors = ["Finance", "Craft","Agriculture","IT","Retail","Construction","
 
 export function createRandomCompany() {
   return {
+    id: count++,
     uuid: faker.datatype.uuid(),
     companyName: faker.company.name(),
     catchPhrase: faker.company.catchPhrase(),
@@ -57,6 +58,7 @@ export function createRandomCompany() {
 
 export function createRandomProduct() {
   return {
+    id: count++,
     uuid : faker.datatype.uuid(),
     productCategory: faker.commerce.product(),
     productName: faker.commerce.productName(),
@@ -70,6 +72,7 @@ export function createRandomProduct() {
 
 export function createRandomPayment() {
   return {
+    id: count++,
     uuid: faker.datatype.uuid(),
     accountNr: faker.finance.account(),
     accountName: faker.finance.accountName(),
