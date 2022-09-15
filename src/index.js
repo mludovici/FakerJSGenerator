@@ -1,7 +1,10 @@
 import {generateData, exportData} from './fakeJSONGenerator.js'
 
 document.addEventListener("DOMContentLoaded", (e) => {
-
+  let conf = window.confirm(`This site uses third party tools like Google Analytics and Google Tag Manager to gather site statistics and limited user statistics. By clicking OK, you agree to the usage of above mentioned.`)
+  if (!conf) {
+    window.location.href = "http://www.google.com"
+  }
   let generateButton = document.getElementById("genBtn");
   let fakeData = document.getElementById("fakeData");
   let amountData = document.getElementById("numberGenerated")
@@ -26,6 +29,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   
   downloadBtn.addEventListener("click", () => {
+
     if (generatedData.length == 0) {
       return
     }
