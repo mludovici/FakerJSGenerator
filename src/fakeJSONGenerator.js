@@ -133,8 +133,7 @@ export function generateData(amount, fakeDataType) {
   return generatedFakeData;
 }
 
-
-export function exportData() {
+ export  function exportData() {
   var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedFakeData, null, '\t'));
   return data;
 }
