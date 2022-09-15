@@ -4,6 +4,7 @@
   "description": "",
   "source": "./index.html",
   "scripts": {
+    "start": "npx http-server http://127.0.0.1:8080/index.html -o",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,7 @@
     "@faker-js/faker": "^7.5.0"
   },
   "dependencies": {
-    "bootstrap": "^5.2.1"
+    "bootstrap": "^5.2.1",
+    "http-server": "^14.1.1"
   }
 }
