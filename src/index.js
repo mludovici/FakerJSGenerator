@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   function copy() {
     var copyText = document.getElementById("dataOut");
+    gtag('event', 'copy_json', {
+      type:fakeData.value,
+      amount: amountData.value,
+    });
     if (copyText.innerText == "" || copyText.innerText == null) {
       return
     } else {
@@ -25,6 +29,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     if (generatedData.length == 0) {
       return
     }
+    gtag('event', 'download_json', {
+      type:fakeData.value,
+      amount: amountData.value,
+    });
+
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedData));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",     dataStr     );
@@ -41,7 +50,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
     console.log(amountData.value);
   })
   generateButton.addEventListener("click", () => {
-    
+    gtag('event', 'generate_json', {
+      type:fakeData.value,
+      amount: amountData.value,
+    });
     generatedData = generateData(amountData.value,fakeData.value)
     dataSlot.innerText = JSON.stringify(generatedData,null,2)
 
