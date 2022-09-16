@@ -1,15 +1,15 @@
 import {generateData, exportData} from './fakeJSONGenerator.js'
 
 document.addEventListener("DOMContentLoaded", (e) => {
-  // let consentTrue = window.localStorage.getItem('gh_fjs_consent')
-  // if (!consentTrue) {
-  //   let conf = window.confirm(`This site uses third party tools like Google Analytics and Google Tag Manager to gather site statistics and limited user statistics. By clicking OK, you agree to the usage of above mentioned.`)
-  //   if (!conf) {
-  //     window.location.href = "http://www.google.com"
-  //   } else {
-  //     localStorage.setItem('gh_fjs_consent', true)
-  //   }
-  // }
+  let consentTrue = window.localStorage.getItem('gh_fjs_consent')
+  if (!consentTrue) {
+    let conf = window.confirm(`This site uses third party tools like Google Analytics and Google Tag Manager to gather site statistics and limited user statistics. By clicking OK, you agree to the usage of above mentioned.`)
+    if (!conf) {
+      window.location.href = "http://www.google.com"
+    } else {
+      localStorage.setItem('gh_fjs_consent', true)
+    }
+  }
 
   let generateButton = document.getElementById("genBtn");
   let fakeData = document.getElementById("fakeData");
