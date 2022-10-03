@@ -32,6 +32,7 @@ export function createRandomPerson() {
       "latitude": faker.address.latitude(),
       "longitude": faker.address.longitude(),
       "coordinates": faker.address.nearbyGPSCoordinate(),
+      "longLat": [+faker.address.longitude(10,-10,5), +faker.address.latitude(55.0708, 35.0708,5)],
       "timezone": faker.address.timeZone(),
       "zipCode": faker.address.zipCode("#####"),
     },
