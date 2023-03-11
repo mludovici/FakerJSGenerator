@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "source": "./index.html",
+  "type": "module",
   "scripts": {
     "start": "npx http-server http://127.0.0.1:8080/index.html -o",
     "start:dev": "nodemon",

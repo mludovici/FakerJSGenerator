@@ -1,4 +1,4 @@
-import {generateData, exportData} from './fakeJSONGenerator.js'
+import { generateData, exportData } from './fakeJSONGenerator.js'
 
 document.addEventListener("DOMContentLoaded", (e) => {
   let consentTrue = window.localStorage.getItem('gh_fjs_consent')
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   function copy() {
     var copyText = document.getElementById("dataOut");
     gtag('event', 'copy_json', {
-      type:fakeData.value,
+      type: fakeData.value,
       amount: amountData.value,
     });
     if (copyText.innerText == "" || copyText.innerText == null) {
@@ -33,20 +33,20 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }
   }
 
-  
+
   downloadBtn.addEventListener("click", () => {
 
     if (generatedData.length == 0) {
       return
     }
     gtag('event', 'download_json', {
-      type:fakeData.value,
+      type: fakeData.value,
       amount: amountData.value,
     });
 
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedData));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", `${fakeData.value}.json`);
     dlAnchorElem.click();
   })
@@ -61,11 +61,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
   })
   generateButton.addEventListener("click", () => {
     gtag('event', 'generate_json', {
-      type:fakeData.value,
+      type: fakeData.value,
       amount: amountData.value,
     });
-    generatedData = generateData(amountData.value,fakeData.value)
-    dataSlot.innerText = JSON.stringify(generatedData,null,2)
+    generatedData = generateData(amountData.value, fakeData.value)
+    dataSlot.innerText = JSON.stringify(generatedData, null, 2)
 
   })
 })
