@@ -5,6 +5,7 @@
   "source": "./index.html",
   "type": "module",
   "scripts": {
+    "go": "node --experimental-network-imports ./src/fakeJSONGenerator.js ",
     "start": "npx http-server http://127.0.0.1:8080 -o",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"

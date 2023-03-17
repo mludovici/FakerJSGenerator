@@ -1,7 +1,7 @@
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-const { default: json } = await import("./assets/productsJson.json", { assert: { type: "json" } });
-console.log(json);
+// const { default: products } = await import("./assets/productsJson.json", { assert: { type: "json" } });
+// console.log(products);
 
 faker.setLocale('de');
 const USERS = [];
@@ -2908,6 +2908,59 @@ export function generateData(amount, fakeDataType) {
   }
   return generatedFakeData;
 }
+
+export function generateAssociatedData() {
+  const products =  generateData(200, "products_new");
+  const companies = generateData(20, "companies");
+  const users = generateData(5, "persons");
+
+  // console.log(products,companies,users);
+  let personProductsAssociation = [];
+
+  
+  let j = Math.ceil(Math.random()*10)
+
+  function createProductsForUser(user) {
+    
+  const productsPurchased = []; 
+
+  let j = Math.ceil(Math.random()*10)
+
+    for (let i = 0; i < j; i++) {
+      let prodId = Math.ceil(Math.random() * products.products_new.length);
+      let isPresent = productsPurchased.includes(prodId);
+
+
+      if (isPresent) {
+        continue;
+      } else {
+        productsPurchased.push(prodId);
+        personProductsAssociation.push({userId: user.id, productId: prodId});
+      }
+    }
+    
+    user.products = productsPurchased;
+    return user;
+  }
+
+
+  const rdn = function () {
+    return Math.ceil(Math.random() * companies.companies.length);
+    
+  }
+
+  let pUsers = users.persons.map(userA => {
+    let user = createProductsForUser(userA);
+    user.companyId = rdn();
+    
+    return user;
+  });
+
+  console.log(pUsers);
+ 
+  console.log(personProductsAssociation);
+}
+generateAssociatedData();
 
 export function exportData() {
   var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedFakeData, null, '\t'));
