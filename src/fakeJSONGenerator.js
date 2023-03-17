@@ -1,4 +1,4 @@
-import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 faker.setLocale('de');
 const USERS = [];
@@ -2903,6 +2903,3 @@ export function exportData() {
   var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedFakeData, null, '\t'));
   return data;
 }
-
-
-
