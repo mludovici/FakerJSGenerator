@@ -1,7 +1,7 @@
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-import { default as data } from './assets/productsJson.json';
-console.log(data); // output 'testing'
+const { default: json } = await import("./assets/productsJson.json", { assert: { type: "json" } });
+console.log(json);
 
 faker.setLocale('de');
 const USERS = [];
