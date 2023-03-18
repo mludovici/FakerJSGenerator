@@ -9,7 +9,7 @@ let count = 0;
 
 export function createRandomPerson() {
   return {
-    id: count++,
+    id: ++count,
     uuid: faker.datatype.uuid(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -47,7 +47,7 @@ const sectors = ["Finance", "Craft", "Agriculture", "IT", "Retail", "Constructio
 
 export function createRandomCompany() {
   return {
-    id: count++,
+    id: ++count,
     uuid: faker.datatype.uuid(),
     companyName: faker.company.name(),
     catchPhrase: faker.company.catchPhrase(),
@@ -62,7 +62,7 @@ export function createRandomCompany() {
 
 export function createRandomProduct() {
   return {
-    id: count++,
+    id: ++count,
     uuid: faker.datatype.uuid(),
     productCategory: faker.commerce.product(),
     productName: faker.commerce.productName(),
@@ -90,7 +90,7 @@ export async function createRandomTodos() {
 
 export function createRandomPayment() {
   return {
-    id: count++,
+    id: ++count,
     uuid: faker.datatype.uuid(),
     accountNr: faker.finance.account(),
     accountName: faker.finance.accountName(),
@@ -110,11 +110,62 @@ export function createRandomPayment() {
   }
 }
 
+
+export function generateAssociatedData(amount) {
+  const products =  generateData(200, "products_new");
+  const companies = generateData(20, "companies");
+  const users = generateData(amount, "persons");
+
+  // console.log(products,companies,users);
+  let personProductsAssociation = [];
+
+  
+  let j = Math.ceil(Math.random()*10)
+
+  function createProductsForUser(user) {
+    
+  const productsPurchased = []; 
+
+  let j = Math.ceil(Math.random() * 5 )
+
+    for (let i = 0; i < j; i++) {
+      let prodId = Math.ceil(Math.random() * products.products_new.length);
+      let isPresent = productsPurchased.includes(prodId);
+
+
+      if (isPresent) {
+        continue;
+      } else {
+        productsPurchased.push(prodId);
+        personProductsAssociation.push({userId: user.id, productId: prodId});
+      }
+    }
+    
+    user.products = productsPurchased;
+    return user;
+  }
+
+
+  const rdn = function () {
+    return Math.ceil(Math.random() * companies.companies.length);
+    
+  }
+
+  let pUsers = users.persons.map(userA => {
+    let user = createProductsForUser(userA);
+    user.companyId = rdn();
+    
+    return user;
+  });
+
+  return [{users: pUsers }, products, companies, { usersToProducts: personProductsAssociation }];
+
+}
+
 function generateFakeDataAmountHelper(amount, generatorFunction) {
   if (amount === 0 || amount === null || amount === undefined) {
     return
   }
-  let count = 0;
   let generatedData = []
   Array.from({ length: amount }).forEach(() => {
     generatedData.push(generatorFunction());
@@ -129,11 +180,18 @@ export function generateData(amount, fakeDataType) {
   count = 0;
 
   switch (fakeDataType) {
+
+    case "reldata":
+      generatedFakeData = {
+        data: generateAssociatedData(amount)
+      }
+      
+      console.log("DATA CREATED:", generatedFakeData);
+      break;
     case "persons":
       generatedFakeData = {
         persons: generateFakeDataAmountHelper(amount, createRandomPerson)
       }
-      console.log("DATA CREATED:", generatedFakeData);
       break;
     case "companies":
       generatedFakeData = {
@@ -2909,58 +2967,6 @@ export function generateData(amount, fakeDataType) {
   return generatedFakeData;
 }
 
-export function generateAssociatedData() {
-  const products =  generateData(200, "products_new");
-  const companies = generateData(20, "companies");
-  const users = generateData(5, "persons");
-
-  // console.log(products,companies,users);
-  let personProductsAssociation = [];
-
-  
-  let j = Math.ceil(Math.random()*10)
-
-  function createProductsForUser(user) {
-    
-  const productsPurchased = []; 
-
-  let j = Math.ceil(Math.random()*10)
-
-    for (let i = 0; i < j; i++) {
-      let prodId = Math.ceil(Math.random() * products.products_new.length);
-      let isPresent = productsPurchased.includes(prodId);
-
-
-      if (isPresent) {
-        continue;
-      } else {
-        productsPurchased.push(prodId);
-        personProductsAssociation.push({userId: user.id, productId: prodId});
-      }
-    }
-    
-    user.products = productsPurchased;
-    return user;
-  }
-
-
-  const rdn = function () {
-    return Math.ceil(Math.random() * companies.companies.length);
-    
-  }
-
-  let pUsers = users.persons.map(userA => {
-    let user = createProductsForUser(userA);
-    user.companyId = rdn();
-    
-    return user;
-  });
-
-  console.log(pUsers);
- 
-  console.log(personProductsAssociation);
-}
-generateAssociatedData();
 
 export function exportData() {
   var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedFakeData, null, '\t'));

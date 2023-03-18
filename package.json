@@ -2,7 +2,7 @@
   "name": "fakerjsgenerator",
   "version": "1.0.2",
   "description": "",
-  "source": "./index.html",
+  "source": "index.html",
   "type": "module",
   "scripts": {
     "go": "node --experimental-network-imports ./src/fakeJSONGenerator.js ",

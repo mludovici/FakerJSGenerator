@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
       amount: amountData.value,
     });
     generatedData = generateData(amountData.value, fakeData.value)
+    console.log(generatedData);
     dataSlot.innerText = JSON.stringify(generatedData, null, 2)
-
   })
 })
 
