@@ -5,17 +5,24 @@
   "source": "index.html",
   "type": "module",
   "scripts": {
-    "go": "node --experimental-network-imports ./src/fakeJSONGenerator.js ",
+    "go": "node --trace-warnings --experimental-network-imports ./src/fakeJSONGenerator.js ",
     "start": "npx http-server http://127.0.0.1:8080 -o",
-    "start:dev": "nodemon",
+    "start:dev": "node ./src/fakeJSONGenerator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Marc Ludovici (https://mludovici.github.io/)",
   "license": "MIT",
   "dependencies": {
-    "@faker-js/faker": "^7.6.0",
     "bootstrap": "^5.2.1",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "webpack": "^5.89.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack-cli": "^5.1.4"
   }
 }

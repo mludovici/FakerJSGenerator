@@ -1,9 +1,8 @@
-import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+// import * as faker from '@faker-js/faker';
 
-// const { default: products } = await import("./assets/productsJson.json", { assert: { type: "json" } });
-// console.log(products);
+import { fakerDE as faker } from '@faker-js/faker';
+// const { faker } = require('@faker-js/faker');
 
-faker.setLocale('de');
 const USERS = [];
 let count = 0;
 
@@ -92,7 +91,7 @@ export function createRandomPayment() {
   return {
     id: ++count,
     uuid: faker.datatype.uuid(),
-    accountNr: faker.finance.account(),
+    // accountNr: faker.finance.account(),
     accountName: faker.finance.accountName(),
     amount: faker.finance.amount(),
     bic: faker.finance.bic(),
@@ -112,21 +111,21 @@ export function createRandomPayment() {
 
 
 export function generateAssociatedData(amount) {
-  const products =  generateData(200, "products_new");
+  const products = generateData(200, "products_new");
   const companies = generateData(20, "companies");
   const users = generateData(amount, "persons");
 
   // console.log(products,companies,users);
   let personProductsAssociation = [];
 
-  
-  let j = Math.ceil(Math.random()*10)
+
+  let j = Math.ceil(Math.random() * 10)
 
   function createProductsForUser(user) {
-    
-  const productsPurchased = []; 
 
-  let j = Math.ceil(Math.random() * 5 )
+    const productsPurchased = [];
+
+    let j = Math.ceil(Math.random() * 5)
 
     for (let i = 0; i < j; i++) {
       let prodId = Math.ceil(Math.random() * products.products_new.length);
@@ -137,10 +136,10 @@ export function generateAssociatedData(amount) {
         continue;
       } else {
         productsPurchased.push(prodId);
-        personProductsAssociation.push({userId: user.id, productId: prodId});
+        personProductsAssociation.push({ userId: user.id, productId: prodId });
       }
     }
-    
+
     user.products = productsPurchased;
     return user;
   }
@@ -148,17 +147,17 @@ export function generateAssociatedData(amount) {
 
   const rdn = function () {
     return Math.ceil(Math.random() * companies.companies.length);
-    
+
   }
 
   let pUsers = users.persons.map(userA => {
     let user = createProductsForUser(userA);
     user.companyId = rdn();
-    
+
     return user;
   });
 
-  return [{users: pUsers }, products, companies, { usersToProducts: personProductsAssociation }];
+  return [{ users: pUsers }, products, companies, { usersToProducts: personProductsAssociation }];
 
 }
 
@@ -185,7 +184,7 @@ export function generateData(amount, fakeDataType) {
       generatedFakeData = {
         data: generateAssociatedData(amount)
       }
-      
+
       console.log("DATA CREATED:", generatedFakeData);
       break;
     case "persons":
@@ -2972,3 +2971,5 @@ export function exportData() {
   var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(generatedFakeData, null, '\t'));
   return data;
 }
+
+
